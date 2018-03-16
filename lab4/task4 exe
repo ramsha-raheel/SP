@@ -1,0 +1,13 @@
+gcc -c -fPIC *.c
+gcc -shared -fPIC mymathfunc.o -o libmath.so.1
+gcc main.o -lmath -L$PWD
+ln -s libmath.so.1 libmath.so
+gcc main.o -lmath -L$PWD
+gcc main.o Wl,-rpath=$PWD -lmath -L$PWD
+./a.out
+gcc -c -fPIC *.c
+gcc -shared -fPIC mymathfunc.o -o libmath.so.1.1
+ln -sf libmath.so.1.1 libmath.so.1
+./a.out
+after this new script after changing run
+
